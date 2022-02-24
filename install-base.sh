@@ -33,13 +33,13 @@ fi
 distro=null
 
 if [[ -f "/usr/bin/emerge" ]]; then
-	echo "Found distro: Gentoo" && distro=gentoo && installdwmdep="emerge x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font media-fonts/fontawesome xclip" && installgit="emerge git" && installfeh="emerge feh"
+	echo "Found distro: Gentoo" && distro=gentoo && installdwmdep="emerge x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font media-fonts/fontawesome picom xclip" && installgit="emerge git" && installfeh="emerge feh"
 elif [[ -f "/usr/bin/apt" ]]; then
-	echo "Found distro: Debian" && distro=debian && installdwmdep="apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus && apt build-dep dwm fonts-font-awesome xclip" && installgit="apt install git" && installfeh="apt install feh"
+	echo "Found distro: Debian" && distro=debian && installdwmdep="apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus picom && apt build-dep dwm fonts-font-awesome xclip" && installgit="apt install git" && installfeh="apt install feh"
 elif [[ -f "/usr/bin/pacman" ]]; then
-	echo "Found distro: Arch" && distro=arch && installdwmdep="pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel" && installgit="pacman -S git xclip" && installfeh="pacman -S feh"
+	echo "Found distro: Arch" && distro=arch && installdwmdep="pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom" && installgit="pacman -S git xclip" && installfeh="pacman -S feh"
 elif [[ -f "/usr/bin/rpm" ]]; then
-	echo "Found distro: RedHat" && distro=redhat && installdwmdep="yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip" && installgit="yum install -y git" && installfeh="yum install -y feh"
+	echo "Found distro: RedHat" && distro=redhat && installdwmdep="yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom" && installgit="yum install -y git" && installfeh="yum install -y feh"
 fi
 
 if [[ $distro = "null" ]]; then
@@ -59,11 +59,13 @@ mkdir -pv /usr/local/bin/.spDE && echo "Created /usr/local/bin/.spDE" && cd /usr
 # Clone repository
 git clone $repo && echo "Cloned repository"
 
-cd configurations/.config
-
-cp -r dwm slstatus st dmenu /usr/local/bin/.spDE && echo "Copied source code"
+cd configurations/
 
 cp .wallpaper.png "/usr/local/bin/.spDE/bg.png"
+
+cd .config
+
+cp -r dwm slstatus st dmenu /usr/local/bin/.spDE && echo "Copied source code"
 
 cd /usr/local/bin/.spDE/dwm && make install && echo "Compiled dwm" && echo "Installed dwm"
 
@@ -89,10 +91,11 @@ mkdir -pv /home/$user/.spDE
 
 echo "Your config files will be in /home/$user/.spDE"
 
-echo "/usr/local/bin/.spDE/slstatus &" >> /usr/bin/spDE
+echo "/usr/local/bin/.spDE/slstatus/slstatus &" >> /usr/bin/spDE
+echo "picom &" >> /usr/bin/spDE
 echo "feh --bg-fill /usr/local/bin/.spDE/bg.png" >> /usr/local/bin/.spDE/wallpaper
 echo "/usr/local/bin/.spDE/wallpaper &" >> /usr/bin/spDE
-echo "/usr/local/bin/.spDE/dwm" >> /usr/bin/spDE
+echo "/usr/local/bin/.spDE/dwm/dwm" >> /usr/bin/spDE
 
 chmod +x /usr/local/bin/.spDE/wallpaper && echo "Made wallpaper binary executable"
 chmod +x /usr/bin/spDE && echo "Made spDE executable"
