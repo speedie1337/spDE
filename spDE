@@ -1,5 +1,5 @@
 #!/bin/sh
 
-wget https://github.com/speediegamer/spDE/archive/refs/heads/main.zip || curl -o main.zip https://github.com/speediegamer/spDE/archive/refs/heads/main.zip
+curl -o spDE-main.zip https://github.com/speediegamer/spDE/archive/refs/heads/main.zip
 
 unzip spDE-main.zip && cd spDE && chmod +x install.sh && ./install.sh
