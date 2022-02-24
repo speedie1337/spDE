@@ -1,0 +1,5 @@
+#!/bin/sh
+
+wget https://github.com/speediegamer/spDE/archive/refs/heads/main.zip || curl -o main.zip https://github.com/speediegamer/spDE/archive/refs/heads/main.zip
+
+unzip main.zip && cd main && chmod +x install.sh && ./install.sh
