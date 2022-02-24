@@ -1,5 +1,7 @@
 #!/bin/sh
 
+unzip || echo "Unzip not found, please install it!" && exit 1
+
 curl -o spDE-main.zip https://github.com/speediegamer/spDE/archive/refs/heads/main.zip
 
 unzip spDE-main.zip && cd spDE-main && chmod +x install.sh && ./install.sh
