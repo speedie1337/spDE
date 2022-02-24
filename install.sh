@@ -6,4 +6,4 @@ cat install-base.sh >> install-spde.sh && echo "Added base"
 
 chmod +x install-spde.sh && echo "Changed permission of script"
 
-echo "Running script" && ./install-spde.sh
+doas ./install-spde.sh || sudo ./install-spde.sh || su - root -c "./install-spde.sh" || echo "Not installing." && echo 1
