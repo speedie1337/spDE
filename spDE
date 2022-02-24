@@ -4,4 +4,6 @@ curl -o main.zip https://codeload.github.com/speediegamer/spDE/zip/refs/heads/ma
 
 unzip main.zip
 cd spDE-main && chmod +x install.sh
+clear
+
 ./install.sh
