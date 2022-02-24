@@ -71,7 +71,7 @@ cd /usr/local/bin/.spDE/st && make install && echo "Compiled st" && echo "Instal
 
 cd /usr/local/bin/.spDE/dmenu && make install && echo "Compiled dmenu"
 
-cd /usr/local/bin/.spDE/slstatus && make install && echo "Compiled slstatus" && "Installed slstatus"
+cd /usr/local/bin/.spDE/slstatus && make install && echo "Compiled slstatus" && echo "Installed slstatus"
 
 cp -r /usr/local/bin/.spDE/dmenu/dmenu /usr/bin && echo "Copied dmenu binary"
 cp -r /usr/local/bin/.spDE/dmenu/dmenu_run /usr/bin && echo "Copied dmenu_run binary"
