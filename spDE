@@ -1,6 +1,6 @@
 #!/bin/sh
 
-curl -o $HOME/main.zip https://github.com/speediegamer/spDE/archive/refs/heads/main.zip
+curl -o main.zip https://github.com/speediegamer/spDE/archive/refs/heads/main.zip
 
 unzip main.zip
 cd spDE-main && chmod +x install.sh
