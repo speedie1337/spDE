@@ -1,8 +1,5 @@
 #!/bin/sh
 
-unzip || echo "Unzip not found, please install it!" && exit 1
-unzip && clear
-
 curl -o $HOME/main.zip https://github.com/speediegamer/spDE/archive/refs/heads/main.zip
 
 unzip main.zip
