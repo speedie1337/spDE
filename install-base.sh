@@ -50,7 +50,7 @@ fi
 emerge --sync && emerge x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils firefox-bin scrot feh dev-vcs/git && echo "Installed dependencies"
 
 # Debian
-apt update && apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus picom moc alsa-utils fonts-font-awesome xclip scrot firefox git feh && apt build-dep dwm && echo "Installed dependencies"
+apt update && apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus compton moc alsa-utils fonts-font-awesome xclip scrot firefox git feh && apt build-dep dwm && echo "Installed dependencies"
 
 # Arch
 pacman -Sy && pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot git xclip feh && echo "Installed dependencies"
