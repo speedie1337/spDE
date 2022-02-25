@@ -1,6 +1,7 @@
 
 # spDE Installer
 
+clear
 echo "            ____  _____ "
 echo "  ___ _ __ |  _ \| ____|"
 echo " / __| '_ \| | | |  _|  "
