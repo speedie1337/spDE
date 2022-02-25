@@ -60,7 +60,7 @@ mkdir -pv /usr/local/bin/.spDE && echo "Created /usr/local/bin/.spDE" && cd /usr
 # Clone repository
 git clone $repo && echo "Cloned repository"
 
-cd configurations/
+cd spDE-resources
 
 cp .wallpaper.png "/usr/local/bin/.spDE/bg.png"
 
