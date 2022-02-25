@@ -59,7 +59,7 @@ pacman -Sy && pacman -S libxft libxinerama terminus-font ttf-font-awesome base-d
 yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox scrot feh git && echo "Installed dependencies"
 
 # Void Linux
-xbps-install base-devel libX11-devel libXft-devel libXinerama-devel freetype-devel terminus-font ttf-font-awesome alsa-utils firefox scrot git xclip feh fontconfig-devel && echo "Installed dependencies"
+xbps-install base-devel libX11-devel libXft-devel libXinerama-devel freetype-devel terminus-font font-awesome alsa-utils firefox scrot git xclip feh fontconfig-devel xf86-input-libinput && echo "Installed dependencies"
 
 if [[ $distro = "null" ]]; then
 	echo "Your distro is not currently supported, please install the configurations manually!" && exit 1
