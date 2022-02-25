@@ -112,11 +112,23 @@ chmod +x /usr/bin/spDE && echo "Made spDE executable"
 chmod +x /usr/bin/sfetch && echo "Made sfetch executable"
 chmod +x /usr/bin/fff && echo "Made fff executable"
 
+mkdir -pv /home/$user/.config/st
+mkdir -pv /home/$user/.config/dwm
+mkdir -pv /home/$user/.config/dmenu
+mkdir -pv /home/$user/.config/slstatus
+
 ln -sf /usr/local/bin/.spDE/dmenu/config.h /home/$user/.spDE/menu-config
 ln -sf /usr/local/bin/.spDE/st/config.h /home/$user/.spDE/terminal-config
 ln -sf /usr/local/bin/.spDE/dwm/config.h /home/$user/.spDE/wm-config
 ln -sf /usr/local/bin/.spDE/slstatus/config.h /home/$user/.spDE/status-config
 ln -sf /usr/local/bin/.spDE/wallpaper /home/$user/.spDE/wallpaper
+ln -sf /usr/local/bin/.spDE/st/st /home/$user/.config/st/st
+ln -sf /usr/local/bin/.spDE/dwm/dwm /home/$user/.config/dwm/dwm
+ln -sf /usr/local/bin/.spDE/dmenu/dmenu /home/$user/.config/dmenu/dmenu
+ln -sf /usr/local/bin/.spDE/dmenu/dmenu_run /home/$user/.config/dmenu/dmenu_run
+ln -sf /usr/local/bin/.spDE/dmenu/dmenu_path /home/$user/.config/dmenu/dmenu_path
+ln -sf /usr/local/bin/.spDE/dmenu/stest /home/$user/.config/dmenu/stest
+ln -sf /usr/local/bin/.spDE/slstatus/slstatus /home/$user/.config/slstatus/slstatus
 
 echo "#!$SHELL" > /usr/bin/sfetch && echo "Added $SHELL to /usr/bin/sfetch"
 cat /usr/bin/sfetch-base >> /usr/bin/sfetch && echo "Added sfetch code to /usr/bin/sfetch"
