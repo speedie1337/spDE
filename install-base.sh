@@ -126,7 +126,7 @@ echo "NOTE: If you don't use xinit, please add /usr/bin/spDE to your display man
 clear
 echo " _____ _                 _                        _ "
 echo "|_   _| |__   __ _ _ __ | | __  _   _  ___  _   _| |"
-echo "  | | | '_ \ / _` | '_ \| |/ / | | | |/ _ \| | | | |"
+echo "  | | | '_ \ / _  | '_ \| |/ / | | | |/ _ \| | | | |"
 echo "  | | | | | | (_| | | | |   <  | |_| | (_) | |_| |_|"
 echo "  |_| |_| |_|\__,_|_| |_|_|\_\  \__, |\___/ \__,_(_)"
 echo "                                |___/               "
