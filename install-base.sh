@@ -86,6 +86,10 @@ chmod +x /usr/local/bin/.spDE/dmenu/dmenu_run && echo "Made dmenu_run binary exe
 chmod +x /usr/local/bin/.spDE/dmenu/dmenu_path && echo "Made dmenu_path binary executable"
 chmod +x /usr/local/bin/.spDE/dmenu/stest && echo "Made stest binary executable"
 
+chmod +x /usr/local/bin/.spDE/slstatus/slstatus && echo "Made slstatus executable"
+chmod +x /usr/local/bin/.spDE/st/st && echo "Made st executable"
+chmod +x /usr/local/bin/.spDE/dwm/dwm && echo "Made dwm executable"
+
 echo "Installed dmenu" && echo "Installed software"
 
 mkdir -pv /home/$user/.spDE
