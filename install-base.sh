@@ -30,17 +30,16 @@ else
 	echo "Git not found" && git=null
 fi
 
-
 distro=null
 
 if [[ -f "/usr/bin/emerge" ]]; then
-	echo "Found distro: Gentoo" && distro=gentoo && installdwmdep="emerge x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font media-fonts/fontawesome picom xclip moc alsa-utils" && installgit="emerge git" && installfeh="emerge feh"
+	echo "Found distro: Gentoo" && distro=gentoo && installdwmdep="emerge x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font media-fonts/fontawesome picom xclip moc alsa-utils firefox-bin scrot" && installgit="emerge git" && installfeh="emerge feh"
 elif [[ -f "/usr/bin/apt" ]]; then
-	echo "Found distro: Debian" && distro=debian && installdwmdep="apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus picom moc alsa-utils && apt build-dep dwm fonts-font-awesome xclip" && installgit="apt install git" && installfeh="apt install feh"
+	echo "Found distro: Debian" && distro=debian && installdwmdep="apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus picom moc alsa-utils fonts-font-awesome xclip scrot firefox && apt build-dep dwm" && installgit="apt install git" && installfeh="apt install feh"
 elif [[ -f "/usr/bin/pacman" ]]; then
-	echo "Found distro: Arch" && distro=arch && installdwmdep="pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils" && installgit="pacman -S git xclip" && installfeh="pacman -S feh"
+	echo "Found distro: Arch" && distro=arch && installdwmdep="pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot" && installgit="pacman -S git xclip" && installfeh="pacman -S feh"
 elif [[ -f "/usr/bin/rpm" ]]; then
-	echo "Found distro: RedHat" && distro=redhat && installdwmdep="yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils" && installgit="yum install -y git" && installfeh="yum install -y feh"
+	echo "Found distro: RedHat" && distro=redhat && installdwmdep="yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox scrot" && installgit="yum install -y git" && installfeh="yum install -y feh"
 fi
 
 if [[ $distro = "null" ]]; then
@@ -90,6 +89,10 @@ chmod +x /usr/local/bin/.spDE/slstatus/slstatus && echo "Made slstatus executabl
 chmod +x /usr/local/bin/.spDE/st/st && echo "Made st executable"
 chmod +x /usr/local/bin/.spDE/dwm/dwm && echo "Made dwm executable"
 
+if [[ -f /usr/bin/firefox-bin ]]; then
+        cp /usr/bin/firefox-bin /usr/bin/firefox
+elif [[ -f /usr/bin/scrot ]]; then
+        mkdir /home/$user/Screenshots && touch /home/$user/Screenshots/.TempScreenshot.png && echo "Added screenshot support"
 echo "Installed dmenu" && echo "Installed software"
 
 mkdir -pv /home/$user/.spDE
