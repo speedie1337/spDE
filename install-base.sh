@@ -19,7 +19,7 @@ else
 	echo "Not running as root, please run me as root! Did you run the wrong script? Run ./install.sh" && exit 1
 fi
 
-echo -n "Which user would you like to install dwm for? > " && read user && echo "Ok, installing for $user!"
+echo -n "Which user would you like to install dwm for? " && read user && echo "Ok, installing for $user!"
 
 echo "Checking system"
 
