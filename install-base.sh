@@ -68,11 +68,8 @@ cd .config
 cp -r dwm slstatus st dmenu /usr/local/bin/.spDE && echo "Copied source code"
 
 cd /usr/local/bin/.spDE/dwm && make install && echo "Compiled dwm" && echo "Installed dwm"
-
 cd /usr/local/bin/.spDE/st && make install && echo "Compiled st" && echo "Installed st"
-
 cd /usr/local/bin/.spDE/dmenu && make install && echo "Compiled dmenu"
-
 cd /usr/local/bin/.spDE/slstatus && make install && echo "Compiled slstatus" && echo "Installed slstatus"
 
 cp -r /usr/local/bin/.spDE/dmenu/dmenu /usr/bin && echo "Copied dmenu binary"
@@ -93,6 +90,8 @@ if [[ -f /usr/bin/firefox-bin ]]; then
         cp /usr/bin/firefox-bin /usr/bin/firefox
 elif [[ -f /usr/bin/scrot ]]; then
         mkdir /home/$user/Screenshots && touch /home/$user/Screenshots/.TempScreenshot.png && echo "Added screenshot support"
+fi
+
 echo "Installed dmenu" && echo "Installed software"
 
 mkdir -pv /home/$user/.spDE
