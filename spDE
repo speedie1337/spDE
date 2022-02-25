@@ -6,4 +6,9 @@ unzip main.zip
 cd spDE-main && chmod +x install.sh
 clear
 
-./install.sh
+echo "After the install is complete, you will NEED to install:"
+echo "- Optional: Display Manager"
+echo "- Xorg Server"
+echo "- Xinit"
+echo
+echo "Run ./install.sh to start installing spDE!"
