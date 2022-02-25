@@ -105,6 +105,10 @@ elif [[ -f /usr/bin/scrot ]]; then
         mkdir /home/$user/Screenshots && touch /home/$user/Screenshots/.TempScreenshot.png
 fi
 
+if [[ -f /usr/bin/compton ]]; then
+       cp /usr/bin/compton /usr/bin/picom
+fi
+
 echo "Installed dmenu" && echo "Installed software"
 
 mkdir -pv /home/$user/.spDE
