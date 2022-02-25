@@ -34,13 +34,13 @@ fi
 distro=null
 
 if [[ -f "/usr/bin/emerge" ]]; then
-	echo "Found distro: Gentoo" && distro=gentoo && installdwmdep="emerge x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font media-fonts/fontawesome picom xclip" && installgit="emerge git" && installfeh="emerge feh"
+	echo "Found distro: Gentoo" && distro=gentoo && installdwmdep="emerge x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font media-fonts/fontawesome picom xclip moc alsa-utils" && installgit="emerge git" && installfeh="emerge feh"
 elif [[ -f "/usr/bin/apt" ]]; then
-	echo "Found distro: Debian" && distro=debian && installdwmdep="apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus picom && apt build-dep dwm fonts-font-awesome xclip" && installgit="apt install git" && installfeh="apt install feh"
+	echo "Found distro: Debian" && distro=debian && installdwmdep="apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus picom moc alsa-utils && apt build-dep dwm fonts-font-awesome xclip" && installgit="apt install git" && installfeh="apt install feh"
 elif [[ -f "/usr/bin/pacman" ]]; then
-	echo "Found distro: Arch" && distro=arch && installdwmdep="pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom" && installgit="pacman -S git xclip" && installfeh="pacman -S feh"
+	echo "Found distro: Arch" && distro=arch && installdwmdep="pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils" && installgit="pacman -S git xclip" && installfeh="pacman -S feh"
 elif [[ -f "/usr/bin/rpm" ]]; then
-	echo "Found distro: RedHat" && distro=redhat && installdwmdep="yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom" && installgit="yum install -y git" && installfeh="yum install -y feh"
+	echo "Found distro: RedHat" && distro=redhat && installdwmdep="yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils" && installgit="yum install -y git" && installfeh="yum install -y feh"
 fi
 
 if [[ $distro = "null" ]]; then
@@ -99,10 +99,12 @@ echo "/usr/local/bin/.spDE/wallpaper &" >> /usr/bin/spDE
 echo "/usr/local/bin/.spDE/dwm/dwm" >> /usr/bin/spDE
 
 curl -o /usr/bin/sfetch-base https://raw.githubusercontent.com/speediegamer/sfetch/main/sfetch && echo "Downloaded sfetch"
+curl -o /usr/bin/fff https://raw.githubusercontent.com/dylanaraps/fff/master/fff && echo "Downloaded fff file manager"
 
 chmod +x /usr/local/bin/.spDE/wallpaper && echo "Made wallpaper binary executable"
 chmod +x /usr/bin/spDE && echo "Made spDE executable"
 chmod +x /usr/bin/sfetch && echo "Made sfetch executable"
+chmod +x /usr/bin/fff && echo "Made fff executable"
 
 ln -sf /usr/local/bin/.spDE/dmenu/config.h /home/$user/.spDE/menu-config
 ln -sf /usr/local/bin/.spDE/st/config.h /home/$user/.spDE/terminal-config
