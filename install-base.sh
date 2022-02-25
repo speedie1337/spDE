@@ -12,7 +12,7 @@ echo "$(cat name)"
 echo "Version: $(cat ver)"
 
 user="$(whoami)"
-repo="https://github.com/speediegamer/configurations"
+repo="https://github.com/speediegamer/spDE-resources" # New repo
 
 if [[ $user = "root" ]]; then
 	echo "Running as root, this is necessary!"
