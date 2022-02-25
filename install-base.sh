@@ -33,7 +33,7 @@ fi
 distro=null
 
 if [[ -f "/usr/bin/emerge" ]]; then
-	echo "Found distro: Gentoo" && distro=gentoo && installdwmdep="emerge x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font media-fonts/fontawesome picom xclip moc alsa-utils firefox-bin scrot" && installgit="emerge git" && installfeh="emerge feh"
+	echo "Found distro: Gentoo" && distro=gentoo && installdwmdep="emerge x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils firefox-bin scrot" && installgit="emerge git" && installfeh="emerge feh"
 elif [[ -f "/usr/bin/apt" ]]; then
 	echo "Found distro: Debian" && distro=debian && installdwmdep="apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus picom moc alsa-utils fonts-font-awesome xclip scrot firefox && apt build-dep dwm" && installgit="apt install git" && installfeh="apt install feh"
 elif [[ -f "/usr/bin/pacman" ]]; then
@@ -41,6 +41,12 @@ elif [[ -f "/usr/bin/pacman" ]]; then
 elif [[ -f "/usr/bin/rpm" ]]; then
 	echo "Found distro: RedHat" && distro=redhat && installdwmdep="yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox scrot" && installgit="yum install -y git" && installfeh="yum install -y feh"
 fi
+
+if [[ -f "/usr/bin/emerge" ]]; then
+        mkdir -pv /etc/portage/package.use
+	echo "x11-libs/cairo X" > /etc/portage/package.use/cairo
+	echo "media-plugins/alsa-plugins pulseaudio" > /etc/portage/package.use/alsa-plugins
+	
 
 if [[ $distro = "null" ]]; then
 	echo "Your distro is not currently supported, please install the configurations manually!" && exit 1
