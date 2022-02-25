@@ -30,16 +30,14 @@ else
 	echo "Git not found" && git=null
 fi
 
-distro=null
-
 if [[ -f "/usr/bin/emerge" ]]; then
-	echo "Found distro: Gentoo" && distro=gentoo && installdwmdep="emerge x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils firefox-bin scrot" && installgit="emerge git" && installfeh="emerge feh"
+	echo "Found distro: Gentoo" && distro=gentoo
 elif [[ -f "/usr/bin/apt" ]]; then
-	echo "Found distro: Debian" && distro=debian && installdwmdep="apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus picom moc alsa-utils fonts-font-awesome xclip scrot firefox && apt build-dep dwm" && installgit="apt install git" && installfeh="apt install feh"
+	echo "Found distro: Debian" && distro=debian
 elif [[ -f "/usr/bin/pacman" ]]; then
-	echo "Found distro: Arch" && distro=arch && installdwmdep="pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot" && installgit="pacman -S git xclip" && installfeh="pacman -S feh"
+	echo "Found distro: Arch" && distro=arch
 elif [[ -f "/usr/bin/rpm" ]]; then
-	echo "Found distro: RedHat" && distro=redhat && installdwmdep="yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox scrot" && installgit="yum install -y git" && installfeh="yum install -y feh"
+	echo "Found distro: RedHat" && distro=redhat
 fi
 
 if [[ -f "/usr/bin/emerge" ]]; then
@@ -48,17 +46,16 @@ if [[ -f "/usr/bin/emerge" ]]; then
 	echo "media-plugins/alsa-plugins pulseaudio" > /etc/portage/package.use/alsa-plugins
 fi
 
+emerge x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils firefox-bin scrot feh git
+apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus picom moc alsa-utils fonts-font-awesome xclip scrot firefox git feh && apt build-dep dwm
+pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot git xclip feh
+yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox scrot feh git && echo "Installed dependencies"
+
 if [[ $distro = "null" ]]; then
 	echo "Your distro is not currently supported, please install the configurations manually!" && exit 1
 elif [[ $distro = "redhat" ]]; then
 	echo "This distro has not been tested. Please report any bugs you find!"
 fi
-
-if [[ $git = "null" ]]; then
-	$installgit && echo "Installed git"
-fi
-
-$installdwmdep && echo "Installed dependencies" && $installfeh && echo "Installed feh"
 
 mkdir -pv /usr/local/bin/.spDE && echo "Created /usr/local/bin/.spDE" && cd /usr/local/bin/.spDE || exit 1
 
