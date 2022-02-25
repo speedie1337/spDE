@@ -46,7 +46,7 @@ if [[ -f "/usr/bin/emerge" ]]; then
         mkdir -pv /etc/portage/package.use
 	echo "x11-libs/cairo X" > /etc/portage/package.use/cairo
 	echo "media-plugins/alsa-plugins pulseaudio" > /etc/portage/package.use/alsa-plugins
-	
+fi
 
 if [[ $distro = "null" ]]; then
 	echo "Your distro is not currently supported, please install the configurations manually!" && exit 1
