@@ -143,5 +143,5 @@ echo "You must recompile it by running make after performing changes!"
 echo
 echo "If you enjoy this, please go support suckless.org!"
 echo
-echo "Have a good day!
+echo "Have a good day!"
 exit 0
