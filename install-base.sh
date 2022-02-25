@@ -89,7 +89,7 @@ chmod +x /usr/local/bin/.spDE/dwm/dwm && echo "Made dwm executable"
 if [[ -f /usr/bin/firefox-bin ]]; then
         cp /usr/bin/firefox-bin /usr/bin/firefox
 elif [[ -f /usr/bin/scrot ]]; then
-        mkdir /home/$user/Screenshots && touch /home/$user/Screenshots/.TempScreenshot.png && echo "Added screenshot support"
+        mkdir /home/$user/Screenshots && touch /home/$user/Screenshots/.TempScreenshot.png
 fi
 
 echo "Installed dmenu" && echo "Installed software"
