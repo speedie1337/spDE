@@ -44,22 +44,27 @@ if [[ -f "/usr/bin/emerge" ]]; then
         mkdir -pv /etc/portage/package.use
 	echo "x11-libs/cairo X" > /etc/portage/package.use/cairo
 	echo "media-plugins/alsa-plugins pulseaudio" > /etc/portage/package.use/alsa-plugins
+	echo "x11-libs/cairo X" > /etc/portage/package.use/cairo
+	echo "x11-base/xorg-server udev -minimal" > /etc/portage/package.use/xorg-server
+	echo "media-libs/libvpx postproc" > /etc/portage/package.use/libvpx
+	echo "media-libs/harfbuzz icu" > /etc/portage/package.use/harfbuzz
+	echo "media-libs/libglvnd X" > /etc/portage/package.use/libglvnd
 fi
 
 # Gentoo
-emerge --sync && emerge x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils firefox-bin scrot feh dev-vcs/git && echo "Installed dependencies"
+emerge --sync && emerge --autounmask --verbose x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font neovim xorg-server xinit media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils firefox-bin scrot feh dev-vcs/git && echo "Installed dependencies"
 
 # Debian
-apt update && apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus compton moc alsa-utils fonts-font-awesome xclip scrot firefox git feh && apt build-dep dwm && echo "Installed dependencies"
+apt update && apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip scrot firefox git feh xorg-server xinit && apt build-dep dwm && echo "Installed dependencies"
 
 # Arch
-pacman -Sy && pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot git xclip feh && echo "Installed dependencies"
+pacman -Sy && pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot git xclip feh neovim xorg-server xorg-xinit && echo "Installed dependencies"
 
 # RedHat/Fedora
-yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox scrot feh git && echo "Installed dependencies"
+yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox scrot feh git xorg-xinit xorg-server neovim && echo "Installed dependencies"
 
 # Void Linux
-xbps-install -S base-devel libX11-devel libXft-devel libXinerama-devel freetype-devel terminus-font font-awesome alsa-utils firefox scrot moc git xclip feh fontconfig-devel picom xf86-input-libinput && echo "Installed dependencies"
+xbps-install -S base-devel libX11-devel libXft-devel libXinerama-devel freetype-devel terminus-font font-awesome alsa-utils firefox scrot moc git xclip feh fontconfig-devel picom xf86-input-libinput neovim xorg-server xorg-xinit && echo "Installed dependencies"
 
 if [[ $distro = "null" ]]; then
 	echo "Your distro is not currently supported, please install the configurations manually!" && exit 1
@@ -122,6 +127,11 @@ echo "feh --bg-fill /usr/local/bin/.spDE/bg.png" >> /usr/local/bin/setwallpaper-
 ln -s "/usr/local/bin/setwallpaper-wm" "/usr/local/bin/.spDE/wallpaper"
 echo "/usr/local/bin/.spDE/wallpaper" >> /usr/bin/spDE
 echo "/usr/local/bin/.spDE/dwm/dwm" >> /usr/bin/spDE
+
+echo "alias vim='nvim'" >> /home/$user/.bashrc
+echo "alias vim='nvim'" >> /home/$user/.zshrc
+echo "export EDITOR='nvim'" >> /home/$user/.bashrc
+echo "export EDITOR='nvim'" >> /home/$user/.zshrc
 
 curl -o /usr/bin/sfetch-base https://raw.githubusercontent.com/speediegamer/sfetch/main/sfetch && echo "Downloaded sfetch"
 echo "#!/usr/bin/$SHELL" > /usr/bin/sfetch
