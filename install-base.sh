@@ -123,7 +123,7 @@ ln -s "/usr/local/bin/setwallpaper-wm" "/usr/local/bin/.spDE/wallpaper"
 echo "/usr/local/bin/.spDE/wallpaper" >> /usr/bin/spDE
 echo "/usr/local/bin/.spDE/dwm/dwm" >> /usr/bin/spDE
 
-curl -o /usr/bin/sfetch-base https://raw.githubusercontent.com/speediegamer/sfetch/main/sfetch-base && echo "Downloaded sfetch"
+curl -o /usr/bin/sfetch-base https://raw.githubusercontent.com/speediegamer/sfetch/main/sfetch && echo "Downloaded sfetch"
 echo "#!/usr/bin/$SHELL" > /usr/bin/sfetch
 cat /usr/bin/sfetch-base >> /usr/bin/sfetch && echo "Installed sfetch"
 curl -o /usr/bin/fff https://raw.githubusercontent.com/dylanaraps/fff/master/fff && echo "Downloaded fff file manager"
