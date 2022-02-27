@@ -117,15 +117,20 @@ echo "Your config files will be in /home/$user/.spDE"
 
 echo "/usr/local/bin/.spDE/slstatus/slstatus &" >> /usr/bin/spDE
 echo "picom &" >> /usr/bin/spDE
-echo "feh --bg-fill /usr/local/bin/.spDE/bg.png" >> /usr/local/bin/.spDE/wallpaper
-echo "/usr/local/bin/.spDE/wallpaper &" >> /usr/bin/spDE
+echo "#!/bin/sh" > /usr/local/bin/setwallpaper-wm
+echo "feh --bg-fill /usr/local/bin/.spDE/bg.png" >> /usr/local/bin/setwallpaper-wm
+ln -s "/usr/local/bin/setwallpaper-wm" "/usr/local/bin/.spDE/wallpaper"
+echo "/usr/local/bin/.spDE/wallpaper" >> /usr/bin/spDE
 echo "/usr/local/bin/.spDE/dwm/dwm" >> /usr/bin/spDE
 
-curl -o /usr/bin/sfetch-base https://raw.githubusercontent.com/speediegamer/sfetch/main/sfetch && echo "Downloaded sfetch"
+curl -o /usr/bin/sfetch-base https://raw.githubusercontent.com/speediegamer/sfetch/main/sfetch-base && echo "Downloaded sfetch"
+echo "#!/usr/bin/$SHELL" > /usr/bin/sfetch
+cat /usr/bin/sfetch-base >> /usr/bin/sfetch && echo "Installed sfetch"
 curl -o /usr/bin/fff https://raw.githubusercontent.com/dylanaraps/fff/master/fff && echo "Downloaded fff file manager"
 curl -o /usr/bin/setwallpaper https://raw.githubusercontent.com/speediegamer/setwallpaper/main/setwallpaper && echo "Downloaded setwallpaper"
 
 chmod +x /usr/local/bin/.spDE/wallpaper && echo "Made wallpaper binary executable"
+chmod +x /usr/local/bin/setwallpaper-wm && echo "Made other wallpaper binary executable"
 chmod +x /usr/bin/spDE && echo "Made spDE executable"
 chmod +x /usr/bin/sfetch && echo "Made sfetch executable"
 chmod +x /usr/bin/fff && echo "Made fff executable"
