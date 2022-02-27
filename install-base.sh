@@ -128,6 +128,9 @@ ln -s "/usr/local/bin/setwallpaper-wm" "/usr/local/bin/.spDE/wallpaper"
 echo "/usr/local/bin/.spDE/wallpaper" >> /usr/bin/spDE
 echo "/usr/local/bin/.spDE/dwm/dwm" >> /usr/bin/spDE
 
+echo "startx" >> /home/$user/.zprofile
+echo "startx" >> /home/$user/.bash_profile
+
 echo "alias vim='nvim'" >> /home/$user/.bashrc
 echo "alias vim='nvim'" >> /home/$user/.zshrc
 echo "export EDITOR='nvim'" >> /home/$user/.bashrc
