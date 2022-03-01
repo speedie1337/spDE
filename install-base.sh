@@ -66,11 +66,14 @@ yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fon
 # Void Linux
 xbps-install -S base-devel libX11-devel libXft-devel libXinerama-devel freetype-devel terminus-font font-awesome alsa-utils firefox scrot moc git xclip feh fontconfig-devel picom xf86-input-libinput neovim xorg-server xorg-xinit && echo "Installed dependencies"
 
-if [[ $distro = "null" ]]; then
-	echo "Your distro is not currently supported, please install the configurations manually!" && exit 1
-elif [[ $distro = "redhat" ]]; then
-	echo "This distro has not been tested. Please report any bugs you find!"
+if [[ -f "/usr/bin/git" ]]; then
+	echo "Git found :D"
+else
+        clear && echo "Git was not found. This script is therefore probably broken. What a shame" && exit
 fi
+
+
+# Prepare 'n stuff
 
 mkdir -pv /usr/local/bin/.spDE && echo "Created /usr/local/bin/.spDE" && cd /usr/local/bin/.spDE || exit 1
 
