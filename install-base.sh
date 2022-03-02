@@ -52,26 +52,36 @@ if [[ -f "/usr/bin/emerge" ]]; then
 fi
 
 # Gentoo
-emerge --sync && emerge --autounmask --verbose x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font neovim xorg-server xinit media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils firefox-bin scrot feh dev-vcs/git && echo "Installed dependencies"
+if [[ -f "/usr/bin/emerge" ]]; then
+        emerge --sync && emerge --autounmask --verbose x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font neovim media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils firefox-bin scrot feh dev-vcs/git && echo "Installed dependencies"
+fi
 
 # Debian
-apt update && apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip scrot firefox git feh xorg-server xinit && apt build-dep dwm && echo "Installed dependencies"
+if [[ -f "/usr/bin/apt" ]]; then
+        apt update && apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip scrot firefox git feh && apt build-dep dwm && echo "Installed dependencies"
+fi
 
 # Arch
-pacman -Sy && pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot git xclip feh neovim xorg-server xorg-xinit && echo "Installed dependencies"
+if [[ -f "/usr/bin/pacman" ]]; then
+        pacman -Sy && pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot git xclip feh neovim && echo "Installed dependencies"
+fi
 
 # RedHat/Fedora
-yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox scrot feh git xorg-xinit xorg-server neovim && echo "Installed dependencies"
+if [[ -f "/usr/bin/yum" ]]; then
+        yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox scrot feh git neovim && echo "Installed dependencies"
+fi
 
 # Void Linux
-xbps-install -S base-devel libX11-devel libXft-devel libXinerama-devel freetype-devel terminus-font font-awesome alsa-utils firefox scrot moc git xclip feh fontconfig-devel picom xf86-input-libinput neovim xorg-server xorg-xinit && echo "Installed dependencies"
+if [[ -f "/usr/bin/xbps-install" ]]; then
+        xbps-install -S base-devel libX11-devel libXft-devel libXinerama-devel freetype-devel terminus-font font-awesome alsa-utils firefox scrot moc git xclip feh fontconfig-devel picom xf86-input-libinput neovim && echo "Installed dependencies"
+fi
 
+# Check if we even installed anything..
 if [[ -f "/usr/bin/git" ]]; then
 	echo "Git found :D"
 else
-        clear && echo "Git was not found. This script is therefore probably broken. What a shame" && exit
+        clear && echo "Git was not found. This script is therefore probably broken. What a shame!" && exit
 fi
-
 
 # Prepare 'n stuff
 
@@ -98,10 +108,15 @@ cp -r /usr/local/bin/.spDE/dmenu/dmenu_run /usr/bin && echo "Copied dmenu_run bi
 cp -r /usr/local/bin/.spDE/dmenu/dmenu_path /usr/bin && echo "Copied dmenu_path binary"
 cp -r /usr/local/bin/.spDE/dmenu/stest /usr/bin && echo "Copied stest binary"
 
-chmod +x /usr/local/bin/.spDE/dmenu/dmenu && echo "Made dmenu binary executable"
-chmod +x /usr/local/bin/.spDE/dmenu/dmenu_run && echo "Made dmenu_run binary executable"
-chmod +x /usr/local/bin/.spDE/dmenu/dmenu_path && echo "Made dmenu_path binary executable"
-chmod +x /usr/local/bin/.spDE/dmenu/stest && echo "Made stest binary executable"
+chmod +x /usr/bin/dmenu && echo "Made dmenu binary executable"
+chmod +x /usr/bin/dmenu_run && echo "Made dmenu_run binary executable"
+chmod +x /usr/bin/dmenu_path && echo "Made dmenu_path binary executable"
+chmod +x /usr/bin/stest && echo "Made stest binary executable"
+
+rm -rf /usr/local/bin/dmenu && echo "Removed old dmenu binary"
+rm -rf /usr/local/bin/dmenu_run && echo "Removed old dmenu_run binary"
+rm -rf /usr/local/bin/dmenu_path && echo "Removed old dmenu_path binary"
+rm -rf /usr/local/bin/stest && echo "Removed old stest binary"
 
 chmod +x /usr/local/bin/.spDE/slstatus/slstatus && echo "Made slstatus executable"
 chmod +x /usr/local/bin/.spDE/st/st && echo "Made st executable"
@@ -178,7 +193,11 @@ echo "/usr/bin/sfetch" >> /home/$user/.bashrc && echo "Added sfetch to /home/$us
 
 echo "Installed sfetch"
 
-usermod -a -G wheel,audio,video $user && echo "Added user to audio, video and wheel groups"
+usermod -a -G wheel $user && echo "Added user to wheel group"
+usermod -a -G audio $user && echo "Added user to audio group"
+usermod -a -G video $user && echo "Added user to video group"
+
+chown $user /home/$user && echo "Changed permissions of /home/$user"
 
 echo "/usr/bin/spDE" >> /home/$user/.xinitrc && echo "Added /usr/bin/spDE to .xinitrc"
 
