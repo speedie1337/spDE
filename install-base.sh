@@ -232,6 +232,10 @@ echo "Xorg server and xinit has also been installed."
 echo "spDE should automatically run when you log in as $user"
 echo "If not, just run 'startx'."
 echo
+echo "If it fails, you probably need a graphics driver."
+echo "The package should be 'xf86-video-something'"
+echo "If it 'freezes', you will need 'xf86-input-libinput'."
+echo
 echo "For advanced users:"
 echo "Your config files are in /home/$user/.spDE/"
 echo "Simply edit them with a text editor (NeoVim or nvim comes preinstalled."
