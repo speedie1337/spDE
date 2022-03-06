@@ -53,17 +53,21 @@ fi
 
 # Gentoo
 if [[ -f "/usr/bin/emerge" ]]; then
-        emerge --sync && emerge --autounmask --verbose x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font neovim media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils firefox-bin scrot feh dev-vcs/git && echo "Installed dependencies"
+        emerge --sync || exit 1
+	emerge --autounmask --verbose x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font neovim media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils firefox-bin scrot feh dev-vcs/git && echo "Installed dependencies"
 fi
 
 # Debian
 if [[ -f "/usr/bin/apt" ]]; then
-        apt update && apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip scrot firefox git feh && apt build-dep dwm && echo "Installed dependencies"
+        apt update || exit 1
+	apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip scrot firefox git feh && apt build-dep dwm && echo "Installed dependencies"
 fi
 
 # Arch
 if [[ -f "/usr/bin/pacman" ]]; then
-        pacman -Sy && pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot git xclip feh neovim && echo "Installed dependencies"
+        pacman-key --init ; pacman-key --populate archlinux
+        pacman -Sy || exit 1
+	pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot git xclip feh neovim && echo "Installed dependencies"
 fi
 
 # RedHat/Fedora
@@ -139,11 +143,12 @@ mkdir -pv /home/$user/.spDE
 echo "Your config files will be in /home/$user/.spDE"
 
 echo "/usr/local/bin/.spDE/slstatus/slstatus &" >> /usr/bin/spDE
-echo "picom &" >> /usr/bin/spDE
+echo "/usr/bin/picom &" >> /usr/bin/spDE
 echo "#!/bin/sh" > /usr/local/bin/setwallpaper-wm
 echo "feh --bg-fill /usr/local/bin/.spDE/bg.png" >> /usr/local/bin/setwallpaper-wm
 ln -s "/usr/local/bin/setwallpaper-wm" "/usr/local/bin/.spDE/wallpaper"
 echo "/usr/local/bin/.spDE/wallpaper" >> /usr/bin/spDE
+echo "/usr/bin/xclip &" >> /usr/bin/spDE
 echo "/usr/local/bin/.spDE/dwm/dwm" >> /usr/bin/spDE
 
 echo "startx" >> /home/$user/.zprofile
@@ -197,7 +202,8 @@ usermod -a -G wheel $user && echo "Added user to wheel group"
 usermod -a -G audio $user && echo "Added user to audio group"
 usermod -a -G video $user && echo "Added user to video group"
 
-chown $user /home/$user && echo "Changed permissions of /home/$user"
+chown -R $user /home/$user && echo "Changed owner of /home/$user"
+chmod -R 777 /home/$user && echo "Changed permissions of /home/$user to 777"
 
 echo "/usr/bin/spDE" >> /home/$user/.xinitrc && echo "Added /usr/bin/spDE to .xinitrc"
 
@@ -224,4 +230,5 @@ echo
 echo "If you enjoy this, please go support suckless.org!"
 echo
 echo "Have a good day!"
+
 exit 0
