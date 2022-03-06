@@ -8,8 +8,8 @@ echo " / __| '_ \| | | |  _|  "
 echo " \__ \ |_) | |_| | |___ "
 echo " |___/ .__/|____/|_____|"
 echo "     |_|                "
-echo "$(cat name)"
-echo "Version: $(cat ver)"
+echo "$(<name)"
+echo "Version: $(<ver)"
 
 user="$(whoami)"
 repo="https://github.com/speediegamer/spDE-resources" # New repo
@@ -65,7 +65,7 @@ fi
 
 # Arch
 if [[ -f "/usr/bin/pacman" ]]; then
-        pacman-key --init ; pacman-key --populate archlinux
+        pacman-key --init ; pacman-key --populate archlinux # Snippet by @jornmann
         pacman -Sy || exit 1
 	pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot git xclip feh neovim && echo "Installed dependencies"
 fi
@@ -161,7 +161,7 @@ echo "export EDITOR='nvim'" >> /home/$user/.zshrc
 
 curl -o /usr/bin/sfetch-base https://raw.githubusercontent.com/speediegamer/sfetch/main/sfetch && echo "Downloaded sfetch"
 echo "#!/usr/bin/$SHELL" > /usr/bin/sfetch
-cat /usr/bin/sfetch-base >> /usr/bin/sfetch && echo "Installed sfetch"
+< /usr/bin/sfetch-base >> /usr/bin/sfetch && echo "Installed sfetch"
 curl -o /usr/bin/fff https://raw.githubusercontent.com/dylanaraps/fff/master/fff && echo "Downloaded fff file manager"
 curl -o /usr/bin/setwallpaper https://raw.githubusercontent.com/speediegamer/setwallpaper/main/setwallpaper && echo "Downloaded setwallpaper"
 
@@ -191,7 +191,7 @@ ln -sf /usr/local/bin/.spDE/dmenu/stest /home/$user/.config/dmenu/stest
 ln -sf /usr/local/bin/.spDE/slstatus/slstatus /home/$user/.config/slstatus/slstatus
 
 echo "#!$SHELL" > /usr/bin/sfetch && echo "Added $SHELL to /usr/bin/sfetch"
-cat /usr/bin/sfetch-base >> /usr/bin/sfetch && echo "Added sfetch code to /usr/bin/sfetch"
+< /usr/bin/sfetch-base >> /usr/bin/sfetch && echo "Added sfetch code to /usr/bin/sfetch"
 
 echo "/usr/bin/sfetch" >> /home/$user/.zshrc && echo "Added sfetch to /home/$user/.zshrc"
 echo "/usr/bin/sfetch" >> /home/$user/.bashrc && echo "Added sfetch to /home/$user/.bashrc"
