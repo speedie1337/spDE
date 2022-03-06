@@ -54,25 +54,25 @@ fi
 # Gentoo
 if [[ -f "/usr/bin/emerge" ]]; then
         emerge --sync || exit 1
-	emerge --autounmask --verbose x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font neovim media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils firefox-bin scrot feh dev-vcs/git && echo "Installed dependencies"
+	emerge --autounmask --verbose x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font neovim media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils firefox-bin scrot feh dev-vcs/git xorg-server xinit && echo "Installed dependencies"
 fi
 
 # Debian
 if [[ -f "/usr/bin/apt" ]]; then
         apt update || exit 1
-	apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip scrot firefox git feh && apt build-dep dwm && echo "Installed dependencies"
+	apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip scrot firefox git feh xorg-server xinit && apt build-dep dwm && echo "Installed dependencies"
 fi
 
 # Arch
 if [[ -f "/usr/bin/pacman" ]]; then
         pacman-key --init ; pacman-key --populate archlinux # Snippet by @jornmann
         pacman -Sy || exit 1
-	pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot git xclip feh neovim && echo "Installed dependencies"
+	pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot git xclip feh neovim xorg-server xorg-init && echo "Installed dependencies"
 fi
 
 # RedHat/Fedora
 if [[ -f "/usr/bin/yum" ]]; then
-        yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox scrot feh git neovim && echo "Installed dependencies"
+        yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox scrot feh git neovim xorg-xinit xorg-server && echo "Installed dependencies"
 fi
 
 # Void Linux
@@ -112,10 +112,14 @@ cp -r /usr/local/bin/.spDE/dmenu/dmenu_run /usr/bin && echo "Copied dmenu_run bi
 cp -r /usr/local/bin/.spDE/dmenu/dmenu_path /usr/bin && echo "Copied dmenu_path binary"
 cp -r /usr/local/bin/.spDE/dmenu/stest /usr/bin && echo "Copied stest binary"
 
+cp -r /usr/local/bin/.spDE/welcome.sh /usr/local/bin/.welcome.sh && echo "Copied welcome binary"
+
 chmod +x /usr/bin/dmenu && echo "Made dmenu binary executable"
 chmod +x /usr/bin/dmenu_run && echo "Made dmenu_run binary executable"
 chmod +x /usr/bin/dmenu_path && echo "Made dmenu_path binary executable"
 chmod +x /usr/bin/stest && echo "Made stest binary executable"
+
+chmod +x /usr/local/bin/.welcome.sh && echo "Made .welcome.sh binary executable"
 
 rm -rf /usr/local/bin/dmenu && echo "Removed old dmenu binary"
 rm -rf /usr/local/bin/dmenu_run && echo "Removed old dmenu_run binary"
@@ -158,6 +162,13 @@ echo "alias vim='nvim'" > /home/$user/.bashrc
 echo "alias vim='nvim'" > /home/$user/.zshrc
 echo "export EDITOR='nvim'" >> /home/$user/.bashrc
 echo "export EDITOR='nvim'" >> /home/$user/.zshrc
+
+echo "if [[ -f "/usr/local/bin/.welcome.sh" ]]; then" >> /home/$user/.zshrc
+echo "if [[ -f "/usr/local/bin/.welcome.sh" ]]; then" >> /home/$user/.bashrc
+echo "/usr/local/bin/.welcome.sh && rm /usr/local/bin/.welcome.sh" >> /home/$user/.zshrc
+echo "/usr/local/bin/.welcome.sh && rm /usr/local/bin/.welcome.sh" >> /home/$user/.bashrc
+echo "fi" >> /home/$user/.zshrc
+echo "fi" >> /home/$user/.bashrc
 
 curl -o /usr/bin/sfetch-base https://raw.githubusercontent.com/speediegamer/sfetch/main/sfetch && echo "Downloaded sfetch"
 echo "#!/usr/bin/$SHELL" > /usr/bin/sfetch
@@ -217,12 +228,13 @@ echo "  | | | | | | (_| | | | |   <  | |_| | (_) | |_| |_|"
 echo "  |_| |_| |_|\__,_|_| |_|_|\_\  \__, |\___/ \__,_(_)"
 echo "                                |___/               "
 echo "spDE has been successfully installed!"
-echo "If you have xinit and xorg-server you can just run startx"
-echo "Otherwise install it and run startx!"
+echo "Xorg server and xinit has also been installed."
+echo "spDE should automatically run when you log in as $user"
+echo "If not, just run 'startx'."
 echo
 echo "For advanced users:"
 echo "Your config files are in /home/$user/.spDE/"
-echo "Simply edit them with a text editor."
+echo "Simply edit them with a text editor (NeoVim or nvim comes preinstalled."
 echo
 echo "The source code itself is in /usr/local/bin/.spDE."
 echo "You must recompile it by running make after performing changes!"
