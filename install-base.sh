@@ -142,20 +142,20 @@ mkdir -pv /home/$user/.spDE
 
 echo "Your config files will be in /home/$user/.spDE"
 
-echo "/usr/local/bin/.spDE/slstatus/slstatus &" >> /usr/bin/spDE
+echo "/usr/local/bin/.spDE/slstatus/slstatus &" > /usr/bin/spDE
 echo "/usr/bin/picom &" >> /usr/bin/spDE
 echo "#!/bin/sh" > /usr/local/bin/setwallpaper-wm
-echo "feh --bg-fill /usr/local/bin/.spDE/bg.png" >> /usr/local/bin/setwallpaper-wm
+echo "feh --bg-fill /usr/local/bin/.spDE/bg.png" > /usr/local/bin/setwallpaper-wm
 ln -s "/usr/local/bin/setwallpaper-wm" "/usr/local/bin/.spDE/wallpaper"
 echo "/usr/local/bin/.spDE/wallpaper" >> /usr/bin/spDE
 echo "/usr/bin/xclip &" >> /usr/bin/spDE
 echo "/usr/local/bin/.spDE/dwm/dwm" >> /usr/bin/spDE
 
-echo "startx" >> /home/$user/.zprofile
-echo "startx" >> /home/$user/.bash_profile
+echo "startx" > /home/$user/.zprofile
+echo "startx" > /home/$user/.bash_profile
 
-echo "alias vim='nvim'" >> /home/$user/.bashrc
-echo "alias vim='nvim'" >> /home/$user/.zshrc
+echo "alias vim='nvim'" > /home/$user/.bashrc
+echo "alias vim='nvim'" > /home/$user/.zshrc
 echo "export EDITOR='nvim'" >> /home/$user/.bashrc
 echo "export EDITOR='nvim'" >> /home/$user/.zshrc
 
