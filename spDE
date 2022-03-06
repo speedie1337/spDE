@@ -2,8 +2,8 @@
 
 curl -o main.zip https://codeload.github.com/speediegamer/spDE/zip/refs/heads/main
 
-unzip main.zip
-cd spDE-main && chmod +x install.sh && cd spDE-main
+unzip main.zip || echo "Unzip not found, please install it first!" ; exit 1
+cd spDE-main && chmod +x install.sh && cd spDE-main && cd spDE-main && ./install.sh
 clear
 
 echo "After the install is complete, you will NEED to install:"
