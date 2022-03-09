@@ -171,8 +171,6 @@ echo "fi" >> /home/$user/.zshrc
 echo "fi" >> /home/$user/.bashrc
 
 mkdir -pv /home/@user/newsboat && echo "Created newsboat directory"
-touch /home/$user/.config/newsboat/config
-touch /home/$user/.config/newsboat/urls
 
 echo 'browser "firefox"' > /home/$user/.config/newsboat/config
 echo 'player "mpv"' >> /home/$user/.config/newsboat/config
@@ -183,7 +181,7 @@ echo 'cleanup-on-quit yes' >> /home/$user/.config/newsboat/config
 echo 'text-width 74' >> /home/$user/.config/newsboat/config
 echo 'auto-reload yes' >> /home/$user/.config/newsboat/config && echo "Created newsboat config file"
 
-echo '__/twitter' > /home/$user/newsboat/urls
+echo '__/twitter' > /home/$user/.config/newsboat/urls
 echo 'https://nitter.net/spdgmr/rss' >> /home/$user/.config/newsboat/urls
 echo 'https://nitter.net/project081/rss' >> /home/$user/.config/newsboat/urls
 echo '__/blogs' >> /home/$user/.config/newsboat/urls
