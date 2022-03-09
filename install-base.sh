@@ -54,30 +54,30 @@ fi
 # Gentoo
 if [[ -f "/usr/bin/emerge" ]]; then
         emerge --sync || exit 1
-	emerge --autounmask --verbose x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font neovim media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils htop firefox-bin scrot feh dev-vcs/git xorg-server xinit && echo "Installed dependencies"
+	emerge --autounmask --verbose x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font neovim media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils htop firefox-bin scrot feh dev-vcs/git xorg-server xinit newsboat && echo "Installed dependencies"
 fi
 
 # Debian
 if [[ -f "/usr/bin/apt" ]]; then
         apt update || exit 1
-	apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip scrot firefox git feh htop xorg-server xinit && apt build-dep dwm && echo "Installed dependencies"
+	apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip scrot firefox git feh htop xorg-server xinit newsboat && apt build-dep dwm && echo "Installed dependencies"
 fi
 
 # Arch
 if [[ -f "/usr/bin/pacman" ]]; then
         pacman-key --init ; pacman-key --populate archlinux # Snippet by @jornmann
         pacman -Sy || exit 1
-	pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot git xclip feh neovim xorg-server xorg-xinit htop && echo "Installed dependencies"
+	pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox scrot git xclip feh neovim xorg-server xorg-xinit newsboat htop && echo "Installed dependencies"
 fi
 
 # RedHat/Fedora
 if [[ -f "/usr/bin/yum" ]]; then
-        yum install -y libXft-devel libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox scrot feh git neovim xorg-xinit xorg-server htop && echo "Installed dependencies"
+        yum install -y libXft-devel newsboat libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox scrot feh git neovim xorg-xinit xorg-server htop && echo "Installed dependencies"
 fi
 
 # Void Linux
 if [[ -f "/usr/bin/xbps-install" ]]; then
-        xbps-install -S base-devel libX11-devel libXft-devel libXinerama-devel freetype-devel terminus-font font-awesome alsa-utils firefox scrot moc git xclip feh fontconfig-devel htop picom xf86-input-libinput neovim && echo "Installed dependencies"
+        xbps-install -S base-devel libX11-devel newsboat libXft-devel libXinerama-devel freetype-devel terminus-font font-awesome alsa-utils firefox scrot moc git xclip feh fontconfig-devel htop picom xf86-input-libinput neovim && echo "Installed dependencies"
 fi
 
 # Check if we even installed anything..
@@ -169,6 +169,27 @@ echo "/usr/local/bin/.welcome.sh && rm /usr/local/bin/.welcome.sh" >> /home/$use
 echo "/usr/local/bin/.welcome.sh && rm /usr/local/bin/.welcome.sh" >> /home/$user/.bashrc
 echo "fi" >> /home/$user/.zshrc
 echo "fi" >> /home/$user/.bashrc
+
+mkdir -pv /home/@user/newsboat && echo "Created newsboat directory"
+echo 'browser "firefox"' > /home/$user/newsboat/config
+echo 'player "mpv"' >> /home/$user/newsboat/config
+echo 'download-path "~/Downloads/%n"' >> /home/$user/newsboat/config
+echo 'save-path "~/Downloads"' >> /home/$user/newsboat/config
+echo 'reload-threads 20' >> /home/$user/newsboat/config
+echo 'cleanup-on-quit yes' >> /home/$user/newsboat/config
+echo 'text-width 74' >> /home/$user/newsboat/config
+echo 'auto-reload yes' >> /home/$user/newsboat/config && echo "Created newsboat config file"
+
+echo '__/twitter' > /home/$user/newsboat/urls
+echo 'https://nitter.net/spdgmr/rss' >> /home/$user/newsboat/urls
+echo 'https://nitter.net/project081/rss' >> /home/$user/newsboat/urls
+echo '__/blogs' >> /home/$user/newsboat/urls
+echo 'https://raw.githubusercontent.com/spdgmr/posts/main/rss.xml' >> /home/$user/newsboat/urls
+echo '__/wikis' >> /home/$user/newsboat/urls
+echo 'https://planet.gentoo.org/rss20.xml' >> /home/$user/newsboat/urls
+echo 'https://archlinux.org/feeds/packages/x86_64/' >> /home/$user/newsboat/urls
+echo 'https://github.com/void-linux/void-packages/commits/master.atom' >> /home/$user/newsboat/urls
+echo 'https://artixlinux.org/feed.php' >> /home/$user/newsboat/urls && echo "Created newsboat urls file"
 
 curl -o /usr/bin/sfetch-base https://raw.githubusercontent.com/speediegamer/sfetch/main/sfetch && echo "Downloaded sfetch"
 echo "#!/usr/bin/$SHELL" > /usr/bin/sfetch
