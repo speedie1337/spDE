@@ -171,25 +171,28 @@ echo "fi" >> /home/$user/.zshrc
 echo "fi" >> /home/$user/.bashrc
 
 mkdir -pv /home/@user/newsboat && echo "Created newsboat directory"
-echo 'browser "firefox"' > /home/$user/newsboat/config
-echo 'player "mpv"' >> /home/$user/newsboat/config
-echo 'download-path "~/Downloads/%n"' >> /home/$user/newsboat/config
-echo 'save-path "~/Downloads"' >> /home/$user/newsboat/config
-echo 'reload-threads 20' >> /home/$user/newsboat/config
-echo 'cleanup-on-quit yes' >> /home/$user/newsboat/config
-echo 'text-width 74' >> /home/$user/newsboat/config
-echo 'auto-reload yes' >> /home/$user/newsboat/config && echo "Created newsboat config file"
+touch /home/$user/.config/newsboat/config
+touch /home/$user/.config/newsboat/urls
+
+echo 'browser "firefox"' > /home/$user/.config/newsboat/config
+echo 'player "mpv"' >> /home/$user/.config/newsboat/config
+echo 'download-path "~/Downloads/%n"' >> /home/$user/.config/newsboat/config
+echo 'save-path "~/Downloads"' >> /home/$user/.config/newsboat/config
+echo 'reload-threads 20' >> /home/$user/.config/newsboat/config
+echo 'cleanup-on-quit yes' >> /home/$user/.config/newsboat/config
+echo 'text-width 74' >> /home/$user/.config/newsboat/config
+echo 'auto-reload yes' >> /home/$user/.config/newsboat/config && echo "Created newsboat config file"
 
 echo '__/twitter' > /home/$user/newsboat/urls
-echo 'https://nitter.net/spdgmr/rss' >> /home/$user/newsboat/urls
-echo 'https://nitter.net/project081/rss' >> /home/$user/newsboat/urls
-echo '__/blogs' >> /home/$user/newsboat/urls
-echo 'https://raw.githubusercontent.com/spdgmr/posts/main/rss.xml' >> /home/$user/newsboat/urls
-echo '__/wikis' >> /home/$user/newsboat/urls
-echo 'https://planet.gentoo.org/rss20.xml' >> /home/$user/newsboat/urls
-echo 'https://archlinux.org/feeds/packages/x86_64/' >> /home/$user/newsboat/urls
-echo 'https://github.com/void-linux/void-packages/commits/master.atom' >> /home/$user/newsboat/urls
-echo 'https://artixlinux.org/feed.php' >> /home/$user/newsboat/urls && echo "Created newsboat urls file"
+echo 'https://nitter.net/spdgmr/rss' >> /home/$user/.config/newsboat/urls
+echo 'https://nitter.net/project081/rss' >> /home/$user/.config/newsboat/urls
+echo '__/blogs' >> /home/$user/.config/newsboat/urls
+echo 'https://raw.githubusercontent.com/spdgmr/posts/main/rss.xml' >> /home/$user/.config/newsboat/urls
+echo '__/wikis' >> /home/$user/.config/newsboat/urls
+echo 'https://planet.gentoo.org/rss20.xml' >> /home/$user/.config/newsboat/urls
+echo 'https://archlinux.org/feeds/packages/x86_64/' >> /home/$user/.config/newsboat/urls
+echo 'https://github.com/void-linux/void-packages/commits/master.atom' >> /home/$user/.config/newsboat/urls
+echo 'https://artixlinux.org/feed.php' >> /home/$user/.config/newsboat/urls && echo "Created newsboat urls file"
 
 curl -o /usr/bin/sfetch-base https://raw.githubusercontent.com/speediegamer/sfetch/main/sfetch && echo "Downloaded sfetch"
 echo "#!/usr/bin/$SHELL" > /usr/bin/sfetch
