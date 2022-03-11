@@ -20,9 +20,13 @@ else
 	echo "Not running as root, please run me as root! Did you run the wrong script? Run ./install.sh" && exit 1
 fi
 
-echo -n "Which user would you like to install dwm for? " && read user && echo "Ok, installing for $user!"
+echo -n "Which user would you like to install dwm for? " && read user
 
-echo "Checking system"
+if [[ -d "/home/$user" ]]; then
+        echo "Ok, installing for $user!"
+else
+        echo "Invalid user, exiting.." && exit 1
+fi
 
 if [[ -f "/usr/bin/emerge" ]]; then
 	echo "Found distro: Gentoo" && distro=gentoo
