@@ -24,12 +24,6 @@ echo -n "Which user would you like to install dwm for? " && read user && echo "O
 
 echo "Checking system"
 
-if [[ -f "/usr/bin/git" ]]; then
-	echo "Found git" && git=/usr/bin/git
-else
-	echo "Git not found" && git=null
-fi
-
 if [[ -f "/usr/bin/emerge" ]]; then
 	echo "Found distro: Gentoo" && distro=gentoo
 elif [[ -f "/usr/bin/apt" ]]; then
@@ -170,7 +164,7 @@ echo "/usr/local/bin/.welcome.sh && rm /usr/local/bin/.welcome.sh" >> /home/$use
 echo "fi" >> /home/$user/.zshrc
 echo "fi" >> /home/$user/.bashrc
 
-mkdir -pv /home/@user/newsboat && echo "Created newsboat directory"
+mkdir -pv /home/$user/newsboat && echo "Created newsboat directory"
 
 echo 'browser "firefox"' > /home/$user/.config/newsboat/config
 echo 'player "mpv"' >> /home/$user/.config/newsboat/config
@@ -192,9 +186,9 @@ echo 'https://archlinux.org/feeds/packages/x86_64/' >> /home/$user/.config/newsb
 echo 'https://github.com/void-linux/void-packages/commits/master.atom' >> /home/$user/.config/newsboat/urls
 echo 'https://artixlinux.org/feed.php' >> /home/$user/.config/newsboat/urls && echo "Created newsboat urls file"
 
-curl -o /usr/bin/sfetch-base https://raw.githubusercontent.com/speediegamer/sfetch/main/sfetch && echo "Downloaded sfetch"
-echo "#!/usr/bin/$SHELL" > /usr/bin/sfetch
-< /usr/bin/sfetch-base >> /usr/bin/sfetch && echo "Installed sfetch"
+curl -o /usr/bin/sfetch https://raw.githubusercontent.com/speediegamer/sfetch/main/sfetch && echo "Downloaded sfetch"
+echo "Installed sfetch"
+
 curl -o /usr/bin/fff https://raw.githubusercontent.com/dylanaraps/fff/master/fff && echo "Downloaded fff file manager"
 curl -o /usr/bin/setwallpaper https://raw.githubusercontent.com/speediegamer/setwallpaper/main/setwallpaper && echo "Downloaded setwallpaper"
 
