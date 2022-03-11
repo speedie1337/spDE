@@ -168,7 +168,7 @@ echo "/usr/local/bin/.welcome.sh && rm /usr/local/bin/.welcome.sh" >> /home/$use
 echo "fi" >> /home/$user/.zshrc
 echo "fi" >> /home/$user/.bashrc
 
-mkdir -pv /home/$user/newsboat && echo "Created newsboat directory"
+mkdir -pv /home/$user/.config/newsboat && echo "Created newsboat directory"
 
 echo 'browser "firefox"' > /home/$user/.config/newsboat/config
 echo 'player "mpv"' >> /home/$user/.config/newsboat/config
