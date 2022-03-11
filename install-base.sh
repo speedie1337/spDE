@@ -228,9 +228,6 @@ ln -sf /usr/local/bin/.spDE/dmenu/dmenu_path /home/$user/.config/dmenu/dmenu_pat
 ln -sf /usr/local/bin/.spDE/dmenu/stest /home/$user/.config/dmenu/stest
 ln -sf /usr/local/bin/.spDE/slstatus/slstatus /home/$user/.config/slstatus/slstatus
 
-echo "#!$SHELL" > /usr/bin/sfetch && echo "Added $SHELL to /usr/bin/sfetch"
-< /usr/bin/sfetch-base >> /usr/bin/sfetch && echo "Added sfetch code to /usr/bin/sfetch"
-
 echo "/usr/bin/sfetch" >> /home/$user/.zshrc && echo "Added sfetch to /home/$user/.zshrc"
 echo "/usr/bin/sfetch" >> /home/$user/.bashrc && echo "Added sfetch to /home/$user/.bashrc"
 
