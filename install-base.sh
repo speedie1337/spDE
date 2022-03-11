@@ -185,11 +185,18 @@ echo 'https://nitter.net/project081/rss' >> /home/$user/.config/newsboat/urls
 echo '__/blogs' >> /home/$user/.config/newsboat/urls
 echo 'https://raw.githubusercontent.com/spdgmr/posts/main/rss.xml' >> /home/$user/.config/newsboat/urls
 echo '__/wikis' >> /home/$user/.config/newsboat/urls
-echo 'https://planet.gentoo.org/rss20.xml' >> /home/$user/.config/newsboat/urls
-echo 'https://archlinux.org/feeds/packages/x86_64/' >> /home/$user/.config/newsboat/urls
-echo 'https://github.com/void-linux/void-packages/commits/master.atom' >> /home/$user/.config/newsboat/urls
-echo 'https://artixlinux.org/feed.php' >> /home/$user/.config/newsboat/urls && echo "Created newsboat urls file"
 
+if [[ -f "/usr/bin/emerge" ]]; then
+        echo 'https://planet.gentoo.org/rss20.xml' >> /home/$user/.config/newsboat/urls
+elif [[ -f "/usr/bin/pacman" ]]; then
+        echo 'https://archlinux.org/feeds/packages/x86_64/' >> /home/$user/.config/newsboat/urls
+elif [[ -f "/usr/bin/xbps-install" ]]; then
+        echo 'https://github.com/void-linux/void-packages/commits/master.atom' >> /home/$user/.config/newsboat/urls
+elif [[ $(cat /etc/os-release) =~ "rtix" ]]; then
+        echo 'https://artixlinux.org/feed.php' >> /home/$user/.config/newsboat/urls
+fi
+
+echo "Created newsboat urls file"
 curl -o /usr/bin/sfetch https://raw.githubusercontent.com/speediegamer/sfetch/main/sfetch && echo "Downloaded sfetch"
 echo "Installed sfetch"
 
