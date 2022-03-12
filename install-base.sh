@@ -101,7 +101,7 @@ cd .config
 cp -r dwm slstatus st dmenu /usr/local/bin/.spDE && echo "Copied source code"
 
 cd /usr/local/bin/.spDE/dwm && make clean && make && echo "Compiled dwm" && echo "Installed dwm"
-cd /usr/local/bin/.spDE/st && make clean && make && echo "Compiled st" && echo "Installed st"
+cd /usr/local/bin/.spDE/st && make clean && make install && echo "Compiled st" && echo "Installed st"
 cd /usr/local/bin/.spDE/dmenu && make clean && make && echo "Compiled dmenu"
 cd /usr/local/bin/.spDE/slstatus && make clean && make && echo "Compiled slstatus" && echo "Installed slstatus"
 
