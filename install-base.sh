@@ -75,7 +75,7 @@ fi
 
 # Void Linux
 if [[ -f "/usr/bin/xbps-install" ]]; then
-        xbps-install -S base-devel libX11-devel newsboat libXft-devel libXinerama-devel freetype-devel terminus-font font-awesome alsa-utils firefox scrot moc git xclip feh fontconfig-devel htop picom xf86-input-libinput neovim && echo "Installed dependencies"
+        xbps-install -S base-devel libX11-devel newsboat libXft-devel libXinerama-devel freetype-devel terminus-font font-awesome alsa-utils xorg-server xinit firefox scrot moc git xclip feh fontconfig-devel htop picom xf86-input-libinput neovim && echo "Installed dependencies"
 fi
 
 # Check if we even installed anything..
