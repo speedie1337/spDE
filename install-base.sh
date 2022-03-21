@@ -146,6 +146,7 @@ echo "Your config files will be in /home/$user/.spDE"
 
 echo "/usr/local/bin/.spDE/slstatus/slstatus &" > /usr/bin/spDE
 echo "/usr/bin/picom &" >> /usr/bin/spDE
+echo "/usr/bin/xrdb ~/.Xresources" >> /usr/bin/spDE
 echo "#!/bin/sh" > /usr/local/bin/setwallpaper-wm
 echo "feh --bg-fill /usr/local/bin/.spDE/bg.png" > /usr/local/bin/setwallpaper-wm
 ln -s "/usr/local/bin/setwallpaper-wm" "/usr/local/bin/.spDE/wallpaper"
@@ -232,6 +233,8 @@ echo "/usr/bin/sfetch" >> /home/$user/.zshrc && echo "Added sfetch to /home/$use
 echo "/usr/bin/sfetch" >> /home/$user/.bashrc && echo "Added sfetch to /home/$user/.bashrc"
 
 echo "Installed sfetch"
+
+curl -o /home/$user/.Xresources https://raw.githubusercontent.com/speediegamer/spDE-resources/main/.Xresources && echo "Downloaded .Xresources"
 
 usermod -a -G wheel $user && echo "Added user to wheel group"
 usermod -a -G audio $user && echo "Added user to audio group"
