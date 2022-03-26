@@ -12,7 +12,8 @@ echo "spDE is licensed under the MIT license. Visit the repository for more info
 echo "$(<name)"
 echo "Version: $(<ver)"
 
-repo="https://github.com/speediegamer/spDE-resources" # New repo
+user=$LOGNAME
+repo="https://github.com/speediegamer/spDE-resources"
 
 if [[ $user = "root" ]]; then
 	echo "Running as root, this is necessary!"
@@ -251,7 +252,7 @@ echo "NOTE: If you don't use xinit, please add /usr/bin/spDE to your display man
 
 chsh -s /bin/zsh $user && echo "Changed shell to zsh"
 
-echo '/usr/local/bin/welcome && rm /usr/local/bin/welcome && echo "clear && $FETCH" > /home/$(whoami)/.zshrc' > /home/$user/.zshrc && echo "Edited .zshrc"
+echo '/usr/local/bin/.spDE/welcome && rm /usr/local/bin/welcome && echo "clear && $FETCH" >> /home/$(whoami)/.zshrc' >> /home/$user/.zshrc && echo "Edited .zshrc"
 
 clear
 echo " _____ _                 _                        _ "
