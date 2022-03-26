@@ -159,11 +159,6 @@ echo "/usr/local/bin/.spDE/dwm/dwm" >> /usr/bin/spDE
 echo "startx" > /home/$user/.zprofile
 echo "startx" > /home/$user/.bash_profile
 
-echo "alias vim='nvim'" > /home/$user/.bashrc
-echo "alias vim='nvim'" > /home/$user/.zshrc
-echo "export EDITOR='nvim'" >> /home/$user/.bashrc
-echo "export EDITOR='nvim'" >> /home/$user/.zshrc
-
 mkdir -pv /home/$user/.config/newsboat && echo "Created newsboat directory"
 
 echo 'browser "firefox"' > /home/$user/.config/newsboat/config
@@ -252,7 +247,7 @@ echo "NOTE: If you don't use xinit, please add /usr/bin/spDE to your display man
 
 chsh -s /bin/zsh $user && echo "Changed shell to zsh"
 
-echo '/usr/local/bin/.spDE/welcome && rm /usr/local/bin/welcome && echo "clear && $FETCH" >> /home/$(whoami)/.zshrc' >> /home/$user/.zshrc && echo "Edited .zshrc"
+echo '/usr/local/bin/.spDE/welcome && rm /usr/local/bin/.spDE/welcome && echo "clear && $FETCH" >> /home/$(whoami)/.zshrc' >> /home/$user/.zshrc && echo "Edited .zshrc"
 
 clear
 echo " _____ _                 _                        _ "
