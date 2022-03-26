@@ -8,10 +8,10 @@ echo " / __| '_ \| | | |  _|  "
 echo " \__ \ |_) | |_| | |___ "
 echo " |___/ .__/|____/|_____|"
 echo "     |_|                "
+echo "spDE is licensed under the MIT license. Visit the repository for more information."
 echo "$(<name)"
 echo "Version: $(<ver)"
 
-user="$(whoami)"
 repo="https://github.com/speediegamer/spDE-resources" # New repo
 
 if [[ $user = "root" ]]; then
@@ -38,44 +38,42 @@ elif [[ -f "/usr/bin/rpm" ]]; then
 	echo "Found distro: RedHat" && distro=redhat
 fi
 
-if [[ -f "/usr/bin/emerge" ]]; then
-        mkdir -pv /etc/portage/package.use
-	echo "x11-libs/cairo X" > /etc/portage/package.use/cairo
-	echo "media-plugins/alsa-plugins pulseaudio" > /etc/portage/package.use/alsa-plugins
-	echo "x11-libs/cairo X" > /etc/portage/package.use/cairo
-	echo "x11-base/xorg-server udev -minimal" > /etc/portage/package.use/xorg-server
-	echo "media-libs/libvpx postproc" > /etc/portage/package.use/libvpx
-	echo "media-libs/harfbuzz icu" > /etc/portage/package.use/harfbuzz
-	echo "media-libs/libglvnd X" > /etc/portage/package.use/libglvnd
-fi
-
 # Gentoo
 if [[ -f "/usr/bin/emerge" ]]; then
+        echo "You seem to be a based /g/entoo user. Emerging might take a good while so please make sure your make.conf is optimized!!"
+        mkdir -pv /etc/portage/package.use || exit 1
+	echo "x11-libs/cairo X" > /etc/portage/package.use/cairo || exit 1
+	echo "media-plugins/alsa-plugins pulseaudio" > /etc/portage/package.use/alsa-plugins || exit 1
+	echo "x11-libs/cairo X" > /etc/portage/package.use/cairo || exit 1
+	echo "x11-base/xorg-server udev -minimal" > /etc/portage/package.use/xorg-server || exit 1
+	echo "media-libs/libvpx postproc" > /etc/portage/package.use/libvpx || exit 1
+	echo "media-libs/harfbuzz icu" > /etc/portage/package.use/harfbuzz || exit 1
+	echo "media-libs/libglvnd X" > /etc/portage/package.use/libglvnd || exit 1
         emerge --sync || exit 1
-	emerge --autounmask --verbose xrdb x11-libs/libXinerama media-fonts/terminus-font neovim media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils htop firefox-bin maim feh dev-vcs/git xorg-server xinit newsboat && echo "Installed dependencies"
+	emerge --autounmask --verbose xrdb x11-libs/libXinerama media-fonts/terminus-font neovim media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils htop firefox-bin maim feh dev-vcs/git xorg-server xinit newsboat zsh yt-dlp && echo "Installed dependencies"
 fi
 
 # Debian
 if [[ -f "/usr/bin/apt" ]]; then
         apt update || exit 1
-	apt install libc6 libx11-6 xrdb libxinerama1 make gcc suckless-tools xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip maim firefox git feh htop xorg-server xinit newsboat && apt build-dep dwm && echo "Installed dependencies"
+	apt install libc6 libx11-6 xrdb libxinerama1 make gcc suckless-tools doas xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip maim firefox git feh htop xorg-server xinit newsboat && apt build-dep dwm zsh yt-dlp && echo "Installed dependencies"
 fi
 
 # Arch
 if [[ -f "/usr/bin/pacman" ]]; then
         pacman-key --init ; pacman-key --populate archlinux # Snippet by @jornmann
         pacman -Sy || exit 1
-	pacman -S libxinerama xrdb terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox maim git xclip feh neovim xorg-server xorg-xinit newsboat htop && echo "Installed dependencies"
+	pacman -S libxinerama xrdb terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox maim git xclip feh neovim xorg-server xorg-xinit newsboat htop zsh yt-dlp && echo "Installed dependencies"
 fi
 
 # RedHat/Fedora
 if [[ -f "/usr/bin/yum" ]]; then
-        yum install -y newsboat xrdb libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox maim feh git neovim xorg-xinit xorg-server htop && echo "Installed dependencies"
+        yum install -y newsboat xrdb libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox maim feh git neovim xorg-xinit xorg-server htop zsh yt-dlp && echo "Installed dependencies"
 fi
 
 # Void Linux
 if [[ -f "/usr/bin/xbps-install" ]]; then
-        xbps-install -S base-devel libX11-devel xrdb newsboat libXinerama-devel freetype-devel terminus-font font-awesome alsa-utils xorg-server xinit firefox maim moc git xclip feh fontconfig-devel htop picom xf86-input-libinput neovim && echo "Installed dependencies"
+        xbps-install -S base-devel libX11-devel xrdb newsboat libXinerama-devel freetype-devel terminus-font font-awesome zsh alsa-utils xorg-server xinit firefox maim moc git xclip feh fontconfig-devel htop picom xf86-input-libinput neovim yt-dlp && echo "Installed dependencies"
 fi
 
 # Check if we even installed anything..
@@ -102,6 +100,7 @@ cp -r dwm slstatus st dmenu /usr/local/bin/.spDE && echo "Copied source code"
 
 cd /usr/local/bin/.spDE || exit 1
 
+# libXft-bgra fixes st, dwm and dmenu crashing
 git clone https://github.com/uditkarode/libxft-bgra || exit 1
 cd libxft-bgra || exit 1
 sh autogen.sh --sysconfdir=/etc --prefix=/usr --mandir=/usr/share/man
@@ -200,7 +199,7 @@ elif [[ -f "/usr/bin/pacman" ]]; then
         echo 'https://archlinux.org/feeds/packages/x86_64/' >> /home/$user/.config/newsboat/urls
 elif [[ -f "/usr/bin/xbps-install" ]]; then
         echo 'https://github.com/void-linux/void-packages/commits/master.atom' >> /home/$user/.config/newsboat/urls
-elif [[ $(cat /etc/os-release) =~ "rtix" ]]; then
+elif [[ $(cat /etc/os-release) =~ "artix" ]]; then
         echo 'https://artixlinux.org/feed.php' >> /home/$user/.config/newsboat/urls
 fi
 
@@ -223,10 +222,10 @@ mkdir -pv /home/$user/.config/dwm
 mkdir -pv /home/$user/.config/dmenu
 mkdir -pv /home/$user/.config/slstatus
 
-ln -sf /usr/local/bin/.spDE/dmenu/config.h /home/$user/.spDE/menu-config
-ln -sf /usr/local/bin/.spDE/st/config.h /home/$user/.spDE/terminal-config
-ln -sf /usr/local/bin/.spDE/dwm/config.h /home/$user/.spDE/wm-config
-ln -sf /usr/local/bin/.spDE/slstatus/config.h /home/$user/.spDE/status-config
+ln -sf /usr/local/bin/.spDE/dmenu/config.def.h /home/$user/.spDE/menu-config
+ln -sf /usr/local/bin/.spDE/st/config.def.h /home/$user/.spDE/terminal-config
+ln -sf /usr/local/bin/.spDE/dwm/config.def.h /home/$user/.spDE/wm-config
+ln -sf /usr/local/bin/.spDE/slstatus/config.def.h /home/$user/.spDE/status-config
 ln -sf /usr/local/bin/.spDE/wallpaper /home/$user/.spDE/wallpaper
 ln -sf /usr/local/bin/.spDE/st/st /home/$user/.config/st/st
 ln -sf /usr/local/bin/.spDE/dwm/dwm /home/$user/.config/dwm/dwm
@@ -241,7 +240,10 @@ echo "/usr/bin/sfetch" >> /home/$user/.bashrc && echo "Added sfetch to /home/$us
 
 echo "Installed sfetch"
 
+curl -o /home/$user/.zshrc https://raw.githubusercontent.com/speediegamer/spDE-resources/main/.zshrc_spDE
 curl -o /home/$user/.Xresources https://raw.githubusercontent.com/speediegamer/spDE-resources/main/.Xresources && echo "Downloaded .Xresources"
+
+ln -s /home/$user/.zshrc /root/.zshrc && echo "Created .zshrc alias for root user"
 
 usermod -a -G wheel $user && echo "Added user to wheel group"
 usermod -a -G audio $user && echo "Added user to audio group"
@@ -249,10 +251,14 @@ usermod -a -G video $user && echo "Added user to video group"
 
 chown -R $user /home/$user && echo "Changed owner of /home/$user"
 chmod -R 777 /home/$user && echo "Changed permissions of /home/$user to 777"
+chmod -R 777 /usr/local/bin && echo "Changed permissions of /usr/local/bin"
+chown -R $user /usr/local/bin && echo "Changed owner of /usr/local/bin"
 
 echo "/usr/bin/spDE" >> /home/$user/.xinitrc && echo "Added /usr/bin/spDE to .xinitrc"
 
 echo "NOTE: If you don't use xinit, please add /usr/bin/spDE to your display manager"
+
+chsh -s /bin/zsh $user && echo "Changed shell to zsh"
 
 clear
 echo " _____ _                 _                        _ "
