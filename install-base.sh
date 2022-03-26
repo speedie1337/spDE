@@ -56,14 +56,14 @@ fi
 # Debian
 if [[ -f "/usr/bin/apt" ]]; then
         apt update || exit 1
-	apt install libc6 libx11-6 xrdb libxinerama1 make gcc suckless-tools doas xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip maim firefox git feh htop xorg-server xinit newsboat && apt build-dep dwm zsh yt-dlp && echo "Installed dependencies"
+	apt install libc6 libx11-6 xorg-xrdb libxinerama1 make gcc suckless-tools doas xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip maim firefox git feh htop xorg-server xinit newsboat && apt build-dep dwm zsh yt-dlp && echo "Installed dependencies"
 fi
 
 # Arch
 if [[ -f "/usr/bin/pacman" ]]; then
         pacman-key --init ; pacman-key --populate archlinux # Snippet by @jornmann
         pacman -Sy || exit 1
-	pacman -S libxinerama xrdb terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox maim git xclip feh neovim xorg-server xorg-xinit newsboat htop zsh yt-dlp && echo "Installed dependencies"
+	pacman -S libxinerama xorg-xrdb terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox maim git xclip feh neovim xorg-server xorg-xinit newsboat htop zsh yt-dlp && echo "Installed dependencies"
 fi
 
 # RedHat/Fedora
@@ -232,6 +232,7 @@ echo "Installed sfetch"
 curl -o /home/$user/.zshrc https://raw.githubusercontent.com/speediegamer/spDE-resources/main/.zshrc_spDE
 curl -o /home/$user/.Xresources https://raw.githubusercontent.com/speediegamer/spDE-resources/main/.Xresources && echo "Downloaded .Xresources"
 curl -o /usr/local/bin/.spDE/welcome https://raw.githubusercontent.com/speediegamer/spDE-resources/main/.config/welcome.sh
+curl -o /usr/local/bin/.spDE/ver https://raw.githubusercontent.com/speediegamer/spDE/main/ver && echo "Write version info"
 chmod +x /usr/local/bin/.spDE/welcome && echo "Installed welcome script"
 
 ln -s /home/$user/.zshrc /root/.zshrc && echo "Created .zshrc alias for root user"
