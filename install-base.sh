@@ -52,30 +52,30 @@ fi
 # Gentoo
 if [[ -f "/usr/bin/emerge" ]]; then
         emerge --sync || exit 1
-	emerge --autounmask --verbose x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font neovim media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils htop firefox-bin maim feh dev-vcs/git xorg-server xinit newsboat && echo "Installed dependencies"
+	emerge --autounmask --verbose xrdb x11-libs/libXinerama x11-libs/libXft media-fonts/terminus-font neovim media-fonts/fontawesome picom x11-misc/xclip moc alsa-utils htop firefox-bin maim feh dev-vcs/git xorg-server xinit newsboat && echo "Installed dependencies"
 fi
 
 # Debian
 if [[ -f "/usr/bin/apt" ]]; then
         apt update || exit 1
-	apt install libc6 libx11-6 libxinerama1 make gcc suckless-tools xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip maim firefox git feh htop xorg-server xinit newsboat && apt build-dep dwm && echo "Installed dependencies"
+	apt install libc6 libx11-6 xrdb libxinerama1 make gcc suckless-tools xfonts-terminus compton neovim moc alsa-utils fonts-font-awesome xclip maim firefox git feh htop xorg-server xinit newsboat && apt build-dep dwm && echo "Installed dependencies"
 fi
 
 # Arch
 if [[ -f "/usr/bin/pacman" ]]; then
         pacman-key --init ; pacman-key --populate archlinux # Snippet by @jornmann
         pacman -Sy || exit 1
-	pacman -S libxft libxinerama terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox maim git xclip feh neovim xorg-server xorg-xinit newsboat htop && echo "Installed dependencies"
+	pacman -S libxft libxinerama xrdb terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox maim git xclip feh neovim xorg-server xorg-xinit newsboat htop && echo "Installed dependencies"
 fi
 
 # RedHat/Fedora
 if [[ -f "/usr/bin/yum" ]]; then
-        yum install -y libXft-devel newsboat libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox maim feh git neovim xorg-xinit xorg-server htop && echo "Installed dependencies"
+        yum install -y libXft-devel newsboat xrdb libXinerama-devel fontpackages-devel fontawesome-fonts-web xclip picom moc alsa-utils firefox maim feh git neovim xorg-xinit xorg-server htop && echo "Installed dependencies"
 fi
 
 # Void Linux
 if [[ -f "/usr/bin/xbps-install" ]]; then
-        xbps-install -S base-devel libX11-devel newsboat libXft-devel libXinerama-devel freetype-devel terminus-font font-awesome alsa-utils xorg-server xinit firefox maim moc git xclip feh fontconfig-devel htop picom xf86-input-libinput neovim && echo "Installed dependencies"
+        xbps-install -S base-devel libX11-devel xrdb newsboat libXft-devel libXinerama-devel freetype-devel terminus-font font-awesome alsa-utils xorg-server xinit firefox maim moc git xclip feh fontconfig-devel htop picom xf86-input-libinput neovim && echo "Installed dependencies"
 fi
 
 # Check if we even installed anything..
