@@ -12,10 +12,9 @@ echo "spDE is licensed under the MIT license. Visit the repository for more info
 echo "$(<name)"
 echo "Version: $(<ver)"
 
-user=$LOGNAME
 repo="https://github.com/speediegamer/spDE-resources"
 
-if [[ $user = "root" ]]; then
+if [[ $LOGNAME = "root" ]]; then
 	echo "Running as root, this is necessary!"
 else
 	echo "Not running as root, please run me as root! Did you run the wrong script? Run ./install.sh" && exit 1
@@ -109,7 +108,7 @@ make install && echo "Installed libXft-bgra"
 
 cd /usr/local/bin/.spDE/dwm && make clean && make && echo "Compiled dwm" && echo "Installed dwm"
 cd /usr/local/bin/.spDE/st && make clean && make install && echo "Compiled st" && echo "Installed st"
-cd /usr/local/bin/.spDE/dmenu && make clean && make && echo "Compiled dmenu"
+cd /usr/local/bin/.spDE/dmenu && make clean && make install && echo "Compiled dmenu"
 cd /usr/local/bin/.spDE/slstatus && make clean && make && echo "Compiled slstatus" && echo "Installed slstatus"
 
 cp -r /usr/local/bin/.spDE/dmenu/dmenu /usr/bin && echo "Copied dmenu binary"
