@@ -116,14 +116,10 @@ cp -r /usr/local/bin/.spDE/dmenu/dmenu_run /usr/bin && echo "Copied dmenu_run bi
 cp -r /usr/local/bin/.spDE/dmenu/dmenu_path /usr/bin && echo "Copied dmenu_path binary"
 cp -r /usr/local/bin/.spDE/dmenu/stest /usr/bin && echo "Copied stest binary"
 
-cp -r /usr/local/bin/.spDE/welcome.sh /usr/local/bin/.welcome.sh && echo "Copied welcome binary"
-
 chmod +x /usr/bin/dmenu && echo "Made dmenu binary executable"
 chmod +x /usr/bin/dmenu_run && echo "Made dmenu_run binary executable"
 chmod +x /usr/bin/dmenu_path && echo "Made dmenu_path binary executable"
 chmod +x /usr/bin/stest && echo "Made stest binary executable"
-
-chmod +x /usr/local/bin/.welcome.sh && echo "Made .welcome.sh binary executable"
 
 rm -rf /usr/local/bin/dmenu && echo "Removed old dmenu binary"
 rm -rf /usr/local/bin/dmenu_run && echo "Removed old dmenu_run binary"
@@ -167,13 +163,6 @@ echo "alias vim='nvim'" > /home/$user/.bashrc
 echo "alias vim='nvim'" > /home/$user/.zshrc
 echo "export EDITOR='nvim'" >> /home/$user/.bashrc
 echo "export EDITOR='nvim'" >> /home/$user/.zshrc
-
-echo "if [[ -f "/usr/local/bin/.welcome.sh" ]]; then" >> /home/$user/.zshrc
-echo "if [[ -f "/usr/local/bin/.welcome.sh" ]]; then" >> /home/$user/.bashrc
-echo "/usr/local/bin/.welcome.sh && rm /usr/local/bin/.welcome.sh" >> /home/$user/.zshrc
-echo "/usr/local/bin/.welcome.sh && rm /usr/local/bin/.welcome.sh" >> /home/$user/.bashrc
-echo "fi" >> /home/$user/.zshrc
-echo "fi" >> /home/$user/.bashrc
 
 mkdir -pv /home/$user/.config/newsboat && echo "Created newsboat directory"
 
@@ -242,6 +231,8 @@ echo "Installed sfetch"
 
 curl -o /home/$user/.zshrc https://raw.githubusercontent.com/speediegamer/spDE-resources/main/.zshrc_spDE
 curl -o /home/$user/.Xresources https://raw.githubusercontent.com/speediegamer/spDE-resources/main/.Xresources && echo "Downloaded .Xresources"
+curl -o /usr/local/bin/.spDE/welcome https://raw.githubusercontent.com/speediegamer/spDE-resources/main/.config/welcome.sh
+chmod +x /usr/local/bin/.spDE/welcome && echo "Installed welcome script"
 
 ln -s /home/$user/.zshrc /root/.zshrc && echo "Created .zshrc alias for root user"
 
@@ -259,6 +250,8 @@ echo "/usr/bin/spDE" >> /home/$user/.xinitrc && echo "Added /usr/bin/spDE to .xi
 echo "NOTE: If you don't use xinit, please add /usr/bin/spDE to your display manager"
 
 chsh -s /bin/zsh $user && echo "Changed shell to zsh"
+
+echo '/usr/local/bin/welcome && rm /usr/local/bin/welcome && echo "clear && $FETCH" > /home/$(whoami)/.zshrc' > /home/$user/.zshrc && echo "Edited .zshrc"
 
 clear
 echo " _____ _                 _                        _ "
