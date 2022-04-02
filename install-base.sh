@@ -33,7 +33,7 @@ if [[ -f "/usr/bin/emerge" ]]; then
 elif [[ -f "/usr/bin/apt" ]]; then
 	echo "Found distro: Debian" && distro=debian
 elif [[ -f "/usr/bin/pacman" ]]; then
-	echo "Found distro: Arch or Artix" && distro=arch
+	echo "Found distro: Arch Based Distro" && distro=arch
 elif [[ -f "/usr/bin/rpm" ]]; then
 	echo "Found distro: RedHat" && distro=redhat
 fi
@@ -61,12 +61,12 @@ fi
 
 # Arch
 if [[ -f "/usr/bin/pacman" ]]; then
-	if [[ -f "/etc/rc.conf" ]]; then
+	if if $(< /etc/os-release | grep "Artix"); then
 		echo "Found Artix"
 		pacman -Sy || exit 1
-		pacman -S libxinerama xorg-server terminus-font ttf-font-awesome base-devel picom alsa-utils firefox maim git xclip feh neovim xorg-server xorg-xinit newsboat htop zsh yt-dlp || exit && echo "Installed dependencies"
-	else
-	echo"Found Arch"
+		pacman -S libxinerama xorg-server terminus-font ttf-font-awesome base-devel picom alsa-utils firefox maim git xclip feh neovim xorg-server xorg-xinit newsboat htop zsh yt-dlp && echo "Installed dependencies"
+        else
+	echo "Found Arch"
         pacman-key --init ; pacman-key --populate archlinux # Snippet by @jornmann
         pacman -Sy || exit 1
 	pacman -S libxinerama xorg-xrdb terminus-font ttf-font-awesome base-devel picom moc alsa-utils firefox maim git xclip feh neovim xorg-server xorg-xinit newsboat htop zsh yt-dlp && echo "Installed dependencies"
